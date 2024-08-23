@@ -1,7 +1,3 @@
-
-const page5 = document.querySelector("#page5")
-page5.style.display = 'none'
-
 // locomotive scrolling with gsap
 
 function Loco() {
@@ -148,6 +144,34 @@ function page3Animation() {
     stagger: 0.1,
     duration: 1,
   });
+
+  const container = document.querySelector("#page3 .container")
+  const words = document.querySelectorAll("#page3 .words")
+  
+  words.forEach((words)=>{
+    const spans = words.querySelectorAll("#page3 .words span")
+    words.addEventListener("mousemove",(e)=>{
+      const target = e.target;
+      const index = Array.from(spans).indexOf(target)
+      let scale = 1;
+      spans.forEach((span,i)=>{
+        if(i===index){
+          scale = 2
+        }else if(i===index-1 || i===index+1){
+          scale = 1.5
+        }else{
+          scale =1 
+        }
+        span.style.transform =` scaleY(${scale})`
+      })
+    
+    })
+    words.addEventListener("mouseleave",(e)=>{
+      spans.forEach((span)=>{
+        span.style.transform = `scaleY(1)`
+      })
+    })
+  })
 }
 
 function page4Animation() {
@@ -166,67 +190,6 @@ function page4Animation() {
     stagger: 0.1,
     duration: 1,
   });
-}
-
-function page5Animation() {
-  const cursor = document.querySelector("#page5 .cursor");
-  const page5 = document.querySelector("#page5");
-
-  page5.addEventListener("mousemove", (e) => {
-    gsap.to(cursor, {
-      left: e.x,
-      top: e.y,
-    });
-  });
-
-  page5.addEventListener("mouseenter", () => {
-    gsap.to(cursor, {
-      opacity: 1,
-      scale: 1,
-    });
-  });
-  page5.addEventListener("mouseleave", () => {
-    gsap.to(cursor, {
-      opacity: 0,
-      scale: 0,
-    });
-  });
-
-  let seats = 7;
-  const seatsDiv = document.querySelector("#page5 h1 span");
-  gsap.from(seatsDiv, {
-    scrollTrigger: {
-      trigger: "#page4 ",
-      scroller: "#main",
-
-      start: "top 70%",
-      end: "bottom 20%",
-    },
-    y: "50px",
-    repeat: 6,
-    duration: 0.4,
-  });
-  gsap.to(seatsDiv, {
-    scrollTrigger: {
-      trigger: "#page4 ",
-      scroller: "#main",
-
-      start: "top 70%",
-      end: "bottom 20%",
-    },
-    y: "-50px",
-    repeat: 5,
-    duration: 0.4,
-  });
-
-  let myinterval = setInterval(() => {
-    seats--;
-    seatsDiv.innerHTML = seats;
-  }, 500);
-
-  setTimeout(() => {
-    clearInterval(myinterval);
-  }, 2800);
 }
 
 function page6Animation() {
@@ -264,21 +227,21 @@ function page8_2Animation() {
   var swiper = new Swiper("#page8-2 .mySwiper", {
     effect: "cards",
     grabCursor: true,
-    loop:true
+    loop: true,
   });
-  gsap.to("#page8-2 .arrow",{
-    left:"0%",
-    scale:1.2,
-    duration:4,
-    ease:"ease-out",
-    opacity:0,
-    repeat:2,
-    scrollTrigger:{
-      trigger:"#page8-2",
-      scroller:"#main",
-      start:"top 80%"
-    }
-  })
+  gsap.to("#page8-2 .arrow", {
+    left: "0%",
+    scale: 1.2,
+    duration: 4,
+    ease: "ease-out",
+    opacity: 0,
+    repeat: 2,
+    scrollTrigger: {
+      trigger: "#page8-2",
+      scroller: "#main",
+      start: "top 80%",
+    },
+  });
 }
 
 gsap.from("#page9 h1 span", {
@@ -297,7 +260,36 @@ page1Animation();
 page2Animation();
 page3Animation();
 page4Animation();
-page5Animation();
 page6Animation();
 page8Animation();
 page8_2Animation();
+
+// function page1TextEffect(){
+//   const container = document.querySelector('#page1 .content h1')
+//   const spans = document.querySelectorAll("#page1 .content h1 span")
+
+//   container.addEventListener("mousemove",(e)=>{
+//     let target = e.target;
+//     let index = Array.from(spans).indexOf(target)
+//     let scale = 1;
+
+//     spans.forEach((span,i)=>{
+
+//       if(i===index){
+//         scale = 2;
+//       }else if(i===index-1 || i===index+1){
+//         scale=1.5
+//       }else{
+//         scale=1;
+//       }
+//       span.style.transform = `scaleY(${scale})`
+//     })
+//   })
+
+//   container.addEventListener("mouseleave",()=>{
+//     spans.forEach((span)=>{
+//       span.style.transform=`scaleY(1)`
+//     })
+//   })
+
+// }
