@@ -1,10 +1,14 @@
 @font-face {
   font-family: nb;
-  src: url(./assets/NBInternationalProBoo.woff2);
+  src: url(./NBInternationalProBoo.woff2);
 }
 @font-face {
   font-family: rejouce;
-  src: url(./assets/Rejouice-Headline.woff2);
+  src: url(./Rejouice-Headline.woff2);
+}
+@font-face {
+  font-family: druck;
+  src: url(./Druk-Heavy-Trial.otf);
 }
 
 * {
@@ -29,12 +33,16 @@ body {
   width: 0%;
   position: absolute;
   bottom: 0;
+  box-shadow: 2px 3px 20px 1px;
 }
 
 #main {
   width: 100%;
   position: relative;
   overflow: hidden;
+  background-color: #1b1b1b;
+  color: #fff;
+
 }
 #loader {
   height: 100vh;
@@ -44,10 +52,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* opacity: 0; */
+  
   position: absolute;
   top: 0;
   z-index: 99;
+  
 }
 #loader h3 {
   font-size: 2vw;
@@ -57,15 +66,18 @@ body {
 #page1 {
   height: 100vh;
   width: 100%;
-  /* overflow-x: hidden; */
   position: relative;
+  cursor: pointer;
+  
 }
 
-#page1 video {
+#page1 img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   position: absolute;
+  perspective: 1000px;
+  
 }
 
 #page1 .content {
@@ -78,6 +90,7 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 6;
+  perspective: 100px;
 }
 
 #page1 #cursor-follower {
@@ -111,16 +124,17 @@ body {
 }
 
 #page1 h1 {
-  font-size: 25vw;
+  font-size: 28vw;
   font-family: rejouce;
   line-height: 1;
-  font-weight: 300;
+  font-weight: 600;
   overflow: hidden;
   display: flex;
   
 }
 #page1 h1 span {
   display: block;
+
 }
 #page2 {
   height: 100vh;
@@ -152,7 +166,6 @@ body {
 
 
 #page3 {
-  /* height: 100vh; */
   width: 100%;
 }
 #page3 .upper {
@@ -164,26 +177,44 @@ body {
   flex-direction: column;
   padding: 25px;
   overflow: hidden;
+  
 }
 #page3 .upper .upper1 span {
   padding: 5px;
-  background-color: #000;
-  color: #fff;
+  background-color: #f7ff08;
+  color: #000000;
   border-radius: 20px;
 }
 #page3 .upper .upper2 {
+  height: fit-content; 
+}
+#page3 .upper .upper2 .container {
   display: flex;
+  gap: 1.5%;
+  flex-wrap: wrap;
+  word-break: 100%;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  line-height: 100%;
-  gap: 10px;
+}
+#page3 .upper .upper2 .container .words{
+  display: flex;
+  font-size: 5.5rem;
+  font-family:druck;
+  cursor: pointer;
+}
+#page3 .upper .upper2 .container .words span{
+  letter-spacing: 10%;
+  text-transform: uppercase;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 300ms;
+  color:#d33c3c
+
 }
 #page3 .upper .upper2 a {
-  font-size: 3rem;
   text-align: center;
-  font-weight: 100;
-  color: #000;
+  color: #d33c3c;
+  text-decoration: none;
+  /* font-family: 'druck LC'; */
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 #page3 .lower {
@@ -204,6 +235,7 @@ body {
   width: 100%;
 }
 #page3 .lower .lower2 div {
+  
   height: 80vh;
   width: 30%;
   position: relative;
@@ -215,21 +247,6 @@ body {
   object-fit: cover;
   position: absolute;
   z-index: 3;
-}
-#page3 .lower .lower2 video {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  z-index: 4;
-  position: absolute;
-  opacity: 0;
-  display: none;
-  transition: all 1s;
-
-}
-#page3 .lower2 div:hover video {
-  opacity: 1;
-  display: block;
 }
 
 #page4 {
@@ -254,7 +271,7 @@ body {
   content: "";
   height: 1px;
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(86, 86, 86);
   position: absolute;
   bottom: 0;
 }
@@ -266,7 +283,7 @@ body {
   bottom: 0;
   left:0;
   border-radius: 50%; 
-  background: linear-gradient(to right,white,rgb(221, 138, 4));
+  background: linear-gradient(to right,rgb(0, 0, 0),rgb(255, 255, 255));
   animation:fallingStar 4s infinite linear;
 }
 @keyframes fallingStar {
@@ -400,9 +417,10 @@ cursor:grab;
   overflow: hidden;
 }
 #page8 a {
-  color: #000;
+  color: #ffffff;
   font-size: 5vw;
 }
+
 
 /* ................................................................. */
 
@@ -417,11 +435,7 @@ cursor:grab;
   overflow: hidden;
   padding: 2%;
 }
-#page8-2 video {
-  position: absolute;
-  scale: 1.3;
-  opacity: 70%;
-}
+
 #page8-2 i{
   position: absolute;
   left: 20%;
@@ -450,7 +464,7 @@ cursor:grab;
   font-weight: bold;
   color: #fff;
   overflow: hidden;
-  background-color: red;
+  /* background-color: red; */
 }
 #page8-2 .swiper-slide img {
   object-fit: cover;
@@ -534,27 +548,31 @@ cursor:grab;
   display: block;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 780px) {
+  #loader h3 {
+    font-size: 4vw;
+
+  }
   #page1 #cursor-follower {
     width: 13vw;
     height: 13vw;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
+    font-size: 0;
   }
   #page2 .lower {
     font-size: 5vw;
     text-transform: uppercase;
   }
+  
   #page3 .upper .upper2 {
     gap: 1px;
     margin-top: 15px;
   }
-  #page3 .upper .upper2 a {
-    line-height: 100%;
-    margin-top: -15px;
-    /* background-color: red; */
+  #page3 .upper .upper2 span {
+   font-size: 2.5rem;
   }
   #page3 .lower .lower1 {
     padding: 3%;
@@ -567,7 +585,7 @@ cursor:grab;
   #page3 .lower .lower2 div {
     width: 90%;
   }
-
+  
   #page5 video {
     scale: 0.9;
   }
@@ -581,7 +599,21 @@ cursor:grab;
     padding: 12%;
   }
   #page7 .lower img {
-    width: 70%;
+    width: 50%;
+  }
+  #page8 a {
+    color: #fff;
+  }
+
+
+  #page8-2  .swiper{
+    width: 90vw;
+  }
+ 
+  #page8-2  img{
+    width: 50vw;
+    height: 30vh;
+    
   }
 
   #page9 .upper,
